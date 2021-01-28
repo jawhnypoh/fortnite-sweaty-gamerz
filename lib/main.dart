@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Fortnite Sweaty Gamerz',
-      theme: ThemeData.dark(),
+      theme: ThemeData(brightness: Brightness.dark, fontFamily: 'Fortnite'),
       home: MyHomePage(title: 'Fortnite Sweaty Gamerz'),
     );
   }
@@ -65,10 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 const Padding(padding: EdgeInsets.only(top: 20.0)),
                 itemShopButton(context),
+                Text('Item Shop', style: TextStyle(fontSize: 40.0)),
                 const Padding(padding: EdgeInsets.only(top: 40.0)),
-                newsButton(
-                  context,
-                )
+                newsButton(context),
+                Text('News', style: TextStyle(fontSize: 40.0)),
               ],
             ),
           ),
