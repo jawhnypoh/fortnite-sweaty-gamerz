@@ -9,10 +9,12 @@ class ApiResources {
   var dio = Dio();
 
   // Get player stats results from fortnite-api
-  Future<PlayerStats> getPlayerStatsResults() async {
+  Future<PlayerStats> getPlayerStatsResults(String playerName) async {
     try {
-      final Response response = await dio.get(playerStatsURL);
+      final Response response = await dio.get(playerStatsURL + playerName);
       final jsonResult = json.decode(response.toString());
+
+      print(jsonResult);
 
       return PlayerStats.fromJson(jsonResult);
     } catch (e) {

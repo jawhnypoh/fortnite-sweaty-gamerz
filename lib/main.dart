@@ -1,6 +1,7 @@
 import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/player_stats_model.dart';
+import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,24 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'Fortnite Sweaty Gamerz',
+      theme: ThemeData.dark(),
+      home: MyHomePage(title: 'Fortnite Sweaty Gamerz'),
     );
   }
 }
@@ -52,18 +38,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  String get playerName => null;
 
   @override
   Widget build(BuildContext context) {
@@ -75,12 +50,67 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
 
     return Scaffold(
-        body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SearchBar(),
+      appBar: AppBar(
+        title:
+            Image.asset('images/br-logo.png', fit: BoxFit.contain, height: 32),
+        centerTitle: true,
       ),
-    ));
+      body: Container(
+        child: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const Padding(padding: EdgeInsets.only(top: 20.0)),
+                itemShopButton(context),
+                const Padding(padding: EdgeInsets.only(top: 40.0)),
+                newsButton(
+                  context,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Future<List<PlayerStats>> searchResult(String playerName) async {
+  //   return List.generate(playerName.length, (int idx) {
+  //     return ApiResources().getPlayerStatsResults(playerName);
+  //   });
+  // }
+
+  Widget itemShopButton(BuildContext context) {
+    return Container(
+      child: ConstrainedBox(
+        constraints: BoxConstraints.expand(height: 350.0),
+        child: FlatButton(
+          height: 200.0,
+          minWidth: MediaQuery.of(context).size.width - 100.0,
+          onPressed: null,
+          padding: EdgeInsets.all(0.0),
+          child: Image.asset('images/store.jpg'),
+        ),
+      ),
+    );
+  }
+
+  Widget newsButton(BuildContext context) {
+    return Container(
+      child: ConstrainedBox(
+        constraints: BoxConstraints.expand(height: 350.0),
+        child: FlatButton(
+          height: 200.0,
+          minWidth: MediaQuery.of(context).size.width - 100.0,
+          onPressed: null,
+          padding: EdgeInsets.all(0.0),
+          child: Image.asset('images/news.jpg'),
+        ),
+      ),
+    );
   }
 
   Widget searchBar(BuildContext context) {
