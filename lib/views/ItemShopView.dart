@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fortnite_sweaty_gamerz/views/CurrentItemsView.dart';
+import 'package:fortnite_sweaty_gamerz/views/UpcomingItemsView.dart';
 
 class ItemShopView extends StatefulWidget {
   @override
@@ -12,7 +13,8 @@ class ItemShopView extends StatefulWidget {
 class ItemShopViewState extends State<ItemShopView>
     with TickerProviderStateMixin {
   final List<Widget> screens = [
-    const CurrentItemsView(key: PageStorageKey('Current'))
+    const CurrentItemsView(key: PageStorageKey('Current')),
+    const UpcomingItemsView(key: PageStorageKey('Upcoming')),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -41,6 +43,10 @@ class ItemShopViewState extends State<ItemShopView>
           BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.newspaper), label: 'Upcoming')
         ],
+        type: BottomNavigationBarType.fixed,
+        currentIndex: selectedIndex,
+        selectedItemColor: Colors.blue,
+        onTap: onItemSelected,
       ),
     );
   }
