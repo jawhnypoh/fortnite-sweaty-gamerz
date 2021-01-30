@@ -35,7 +35,7 @@ jobs:
           git config user.email "flutter-ci@github.com"
           git status
           git remote add secure-origin https://${{ secrets.ACCESS_TOKEN }}@github.com/jawhnypoh/fortnite_sweaty_gamerz.git
-          git checkout -b master
+          git checkout -b gh-pages
           git add .
           git commit -m "Updated docs"
-          git push --force secure-origin master
+          git push --force secure-origin gh-pages
