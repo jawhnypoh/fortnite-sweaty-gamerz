@@ -106,8 +106,8 @@ class ItemShopView extends StatelessWidget {
           children: <Widget>[
             Container(
               margin: const EdgeInsets.only(left: 5.0, right: 2.0),
-              width: 20.0,
-              height: 20.0,
+              width: 25.0,
+              height: 25.0,
               decoration: BoxDecoration(
                   image: new DecorationImage(image: NetworkImage(vBucksLink))),
             ),

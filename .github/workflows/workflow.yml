@@ -29,10 +29,11 @@ jobs:
         working-directory: .
       - name: Deploy
         run: |
-          cd /web
+          cd build/web
           git init
           git config user.name  "CI"
           git config user.email "flutter-ci@github.com"
+          git status
           git remote add secure-origin https://${{ secrets.ACCESS_TOKEN }}@github.com/jawhnypoh/fortnite-sweaty-gamerz.git
           git checkout -b master
           git add .
