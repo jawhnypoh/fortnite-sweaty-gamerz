@@ -19,8 +19,8 @@ class CurrentItemsView extends StatelessWidget {
       body: Container(
         margin: EdgeInsets.only(left: 10.0, right: 10.0),
         child: SingleChildScrollView(
-          child: FutureBuilder<ItemShopModel>(
-            future: ApiResources().getItemShopResults(),
+          child: FutureBuilder<CurrentItemsModel>(
+            future: ApiResources().getCurrentItemShopResults(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Container(
