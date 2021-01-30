@@ -29,7 +29,6 @@ class UpcomingItemsModel {
 class Data {
   String id;
   String name;
-  String price;
   Images images;
   String rarity;
   String type;
@@ -41,7 +40,6 @@ class Data {
   Data(
       {this.id,
       this.name,
-      this.price,
       this.images,
       this.rarity,
       this.type,
@@ -53,7 +51,6 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    price = json['price'];
     images =
         json['images'] != null ? new Images.fromJson(json['images']) : null;
     rarity = json['rarity'];
@@ -68,7 +65,6 @@ class Data {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
-    data['price'] = this.price;
     if (this.images != null) {
       data['images'] = this.images.toJson();
     }
