@@ -1,11 +1,11 @@
-// PlayerStats Class for Player Stats Screen
-class PlayerStats {
+// PlayerStats Model Class for Player Stats Screen
+class PlayerStatsModel {
   int status;
   Data data;
 
-  PlayerStats({this.status, this.data});
+  PlayerStatsModel({this.status, this.data});
 
-  PlayerStats.fromJson(Map<String, dynamic> json) {
+  PlayerStatsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
