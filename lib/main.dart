@@ -2,6 +2,7 @@ import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/player_stats_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
+import 'package:fortnite_sweaty_gamerz/views/ItemShopView.dart';
 
 void main() {
   runApp(MyApp());
@@ -65,10 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 const Padding(padding: EdgeInsets.only(top: 20.0)),
                 itemShopButton(context),
-                Text('Item Shop', style: TextStyle(fontSize: 40.0)),
+                const Padding(padding: EdgeInsets.only(bottom: 10.0)),
+                Text('ITEM SHOP', style: TextStyle(fontSize: 40.0)),
                 const Padding(padding: EdgeInsets.only(top: 40.0)),
                 newsButton(context),
-                Text('News', style: TextStyle(fontSize: 40.0)),
+                const Padding(padding: EdgeInsets.only(bottom: 10.0)),
+                Text('NEWS', style: TextStyle(fontSize: 40.0)),
               ],
             ),
           ),
@@ -86,13 +89,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget itemShopButton(BuildContext context) {
     return Container(
       child: ConstrainedBox(
-        constraints: BoxConstraints.expand(height: 350.0),
+        constraints: BoxConstraints.expand(height: 275.0),
         child: FlatButton(
           height: 200.0,
           minWidth: MediaQuery.of(context).size.width - 100.0,
-          onPressed: null,
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ItemShopView()));
+          },
           padding: EdgeInsets.all(0.0),
-          child: Image.asset('images/store.jpg'),
+          child: Image.asset('images/store.jpg',
+              height: 275, width: 550, fit: BoxFit.fitWidth),
         ),
       ),
     );
@@ -101,13 +108,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget newsButton(BuildContext context) {
     return Container(
       child: ConstrainedBox(
-        constraints: BoxConstraints.expand(height: 350.0),
+        constraints: BoxConstraints.expand(height: 275.0),
         child: FlatButton(
           height: 200.0,
           minWidth: MediaQuery.of(context).size.width - 100.0,
           onPressed: null,
           padding: EdgeInsets.all(0.0),
-          child: Image.asset('images/news.jpg'),
+          child: Image.asset('images/news.jpg',
+              height: 275, width: 550, fit: BoxFit.fitWidth),
         ),
       ),
     );
