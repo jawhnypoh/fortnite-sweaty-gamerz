@@ -17,19 +17,38 @@ class ItemShopView extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
+        margin: EdgeInsets.only(left: 10.0, right: 10.0),
         child: SingleChildScrollView(
           child: FutureBuilder<ItemShopModel>(
             future: ApiResources().getItemShopResults(),
             builder: (context, snapshot) {
-              return Container(
-                child: Column(
-                  children: <Widget>[
-                    const Padding(padding: EdgeInsets.only(top: 20.0)),
-                    buildDateTime(),
-                    const Padding(padding: EdgeInsets.only(bottom: 20.0)),
-                  ],
-                ),
-              );
+              if (snapshot.hasData) {
+                return Container(
+                  child: Column(
+                    children: <Widget>[
+                      const Padding(padding: EdgeInsets.only(top: 20.0)),
+                      buildDateTime(),
+                      const Padding(padding: EdgeInsets.only(bottom: 40.0)),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text('Featured Items',
+                              style: TextStyle(fontSize: 35.0))),
+                      const Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                      buildFeaturedGridList(snapshot.data.data.featured),
+                      const Padding(padding: EdgeInsets.only(bottom: 40.0)),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text('Daily Items',
+                              style: TextStyle(fontSize: 35.0))),
+                      buildFeaturedGridList(snapshot.data.data.featured),
+                    ],
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              } else {
+                return buildProgressIndicator();
+              }
             },
           ),
         ),
@@ -57,5 +76,81 @@ class ItemShopView extends StatelessWidget {
       formattedDate,
       style: TextStyle(fontSize: 50.0),
     )));
+  }
+
+  Widget buildFeaturedGridList(List featuredItems) {
+    return Container(
+        height: 800.0,
+        child: GridView.count(
+          crossAxisCount: 2,
+          children: List.generate(featuredItems.length, (index) {
+            return Container(
+                margin: EdgeInsets.all(10.0),
+                color: determineBGColor(featuredItems[index].rarity),
+                child: Center(
+                    child: Stack(children: <Widget>[
+                  buildItemImageAndText(featuredItems[index].name,
+                      featuredItems[index].shopImages.icon),
+                  buildItemPriceText(featuredItems[index].price,
+                      featuredItems[index].priceIconLink),
+                ])));
+          }),
+        ));
+  }
+
+  Widget buildItemPriceText(String price, String vBucksLink) {
+    return Container(
+        margin: EdgeInsets.only(top: 10.0),
+        child: Row(
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.only(left: 5.0, right: 2.0),
+              width: 20.0,
+              height: 20.0,
+              decoration: BoxDecoration(
+                  image: new DecorationImage(image: NetworkImage(vBucksLink))),
+            ),
+            Text(price, style: TextStyle(fontSize: 20.0))
+          ],
+        ));
+  }
+
+  Widget buildItemImageAndText(String name, String imageLink) {
+    return Container(
+        width: 240,
+        height: 240,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.cover, image: NetworkImage(imageLink))),
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          width: double.infinity,
+          color: Color(0xFF0E3311).withOpacity(0.7),
+          child: Padding(
+            padding: EdgeInsets.all(5.0),
+            child: Text(
+              name,
+              style: TextStyle(fontSize: 35.0),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ));
+  }
+
+  Color determineBGColor(String rarity) {
+    switch (rarity) {
+      case 'common':
+        return Colors.grey;
+      case 'uncommon':
+        return Colors.green[800];
+      case 'rare':
+        return Colors.blue[900];
+      case 'epic':
+        return Colors.purple[700];
+      case 'legendary':
+        return Colors.orange[400];
+      case 'icon_series':
+        return Colors.teal[600];
+    }
   }
 }

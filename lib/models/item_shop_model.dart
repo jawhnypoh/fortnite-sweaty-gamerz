@@ -209,28 +209,27 @@ class Daily {
 
 class ShopImages {
   String icon;
-  String png;
-  String gallery;
-  String featured;
+  // String png;
+  // bool gallery;
+  // String featured;
   bool resizeAvailable;
 
-  ShopImages(
-      {this.icon, this.png, this.gallery, this.featured, this.resizeAvailable});
+  ShopImages({this.icon, this.resizeAvailable});
 
   ShopImages.fromJson(Map<String, dynamic> json) {
     icon = json['icon'];
-    png = json['png'];
-    gallery = json['gallery'];
-    featured = json['featured'];
+    // png = json['png'];
+    // gallery = json['gallery'];
+    // featured = json['featured'];
     resizeAvailable = json['resizeAvailable'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['icon'] = this.icon;
-    data['png'] = this.png;
-    data['gallery'] = this.gallery;
-    data['featured'] = this.featured;
+    // data['png'] = this.png;
+    // data['gallery'] = this.gallery;
+    // data['featured'] = this.featured;
     data['resizeAvailable'] = this.resizeAvailable;
     return data;
   }
