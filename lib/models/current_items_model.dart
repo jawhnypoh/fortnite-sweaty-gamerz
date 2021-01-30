@@ -1,12 +1,12 @@
-// ItemShop Model Class for Item Shop Screen
+// CurrentItems Model Class for Item Shop Screen
 
-class ItemShopModel {
+class CurrentItemsModel {
   int status;
   Data data;
 
-  ItemShopModel({this.status, this.data});
+  CurrentItemsModel({this.status, this.data});
 
-  ItemShopModel.fromJson(Map<String, dynamic> json) {
+  CurrentItemsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }

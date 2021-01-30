@@ -1,6 +1,6 @@
 // API Resources methods
 import 'package:dio/dio.dart';
-import 'package:fortnite_sweaty_gamerz/models/item_shop_model.dart';
+import 'package:fortnite_sweaty_gamerz/models/current_items_model.dart';
 import 'package:fortnite_sweaty_gamerz/models/player_stats_model.dart';
 import 'dart:convert';
 
@@ -28,7 +28,7 @@ class ApiResources {
   }
 
   // Get item shop stuff from fnbr.co api
-  Future<ItemShopModel> getItemShopResults() async {
+  Future<CurrentItemsModel> getItemShopResults() async {
     try {
       dio.options.headers = {'x-api-key': fnbrApiKey};
       final Response response = await dio.get(itemShopURL);
@@ -36,7 +36,7 @@ class ApiResources {
 
       print(jsonResult);
 
-      return ItemShopModel.fromJson(jsonResult);
+      return CurrentItemsModel.fromJson(jsonResult);
     } catch (e) {
       print(e);
     }

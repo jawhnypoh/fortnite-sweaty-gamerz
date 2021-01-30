@@ -1,7 +1,7 @@
 // Current Items Screen
 
 import 'package:flutter/material.dart';
-import 'package:fortnite_sweaty_gamerz/models/item_shop_model.dart';
+import 'package:fortnite_sweaty_gamerz/models/current_items_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
 import 'package:intl/intl.dart';
 

@@ -31,11 +31,11 @@ jobs:
         run: |
           cd build/web
           git init
-          git config user.name  "CI"
-          git config user.email "flutter-ci@github.com"
+          git config --global user.name  "jawhnypoh"
+          git config --global user.email "po.johnny@gmail.com"
           git status
-          git remote add secure-origin https://${{ secrets.ACCESS_TOKEN }}@github.com/jawhnypoh/fortnite_sweaty_gamerz.git
+          git remote add origin https://${{ secrets.ACCESS_TOKEN }}@github.com/jawhnypoh/fortnite_sweaty_gamerz.git
           git checkout -b gh-pages
           git add .
           git commit -m "Updated docs"
-          git push --force secure-origin gh-pages
+          git push origin gh-pages -f
