@@ -34,13 +34,13 @@ class ItemShopView extends StatelessWidget {
                           child: Text('Featured Items',
                               style: TextStyle(fontSize: 35.0))),
                       const Padding(padding: EdgeInsets.only(bottom: 5.0)),
-                      buildFeaturedGridList(snapshot.data.data.featured),
-                      const Padding(padding: EdgeInsets.only(bottom: 40.0)),
+                      buildItemsGridList(snapshot.data.data.featured),
+                      const Padding(padding: EdgeInsets.only(bottom: 60.0)),
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Text('Daily Items',
                               style: TextStyle(fontSize: 35.0))),
-                      buildFeaturedGridList(snapshot.data.data.featured),
+                      buildItemsGridList(snapshot.data.data.daily),
                     ],
                   ),
                 );
@@ -78,7 +78,7 @@ class ItemShopView extends StatelessWidget {
     )));
   }
 
-  Widget buildFeaturedGridList(List featuredItems) {
+  Widget buildItemsGridList(List featuredItems) {
     return Container(
         height: 800.0,
         child: GridView.count(
