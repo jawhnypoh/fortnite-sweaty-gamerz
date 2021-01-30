@@ -35,7 +35,8 @@ class ItemShopView extends StatelessWidget {
                               style: TextStyle(fontSize: 35.0))),
                       const Padding(padding: EdgeInsets.only(bottom: 5.0)),
                       buildItemsGridList(snapshot.data.data.featured),
-                      const Padding(padding: EdgeInsets.only(bottom: 60.0)),
+                      const Padding(padding: EdgeInsets.only(bottom: 30.0)),
+                      const Divider(color: Colors.grey),
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Text('Daily Items',
