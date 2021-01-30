@@ -30,8 +30,6 @@ class Data {
   String id;
   String name;
   String price;
-  bool priceIcon;
-  bool priceIconLink;
   Images images;
   String rarity;
   String type;
@@ -44,8 +42,6 @@ class Data {
       {this.id,
       this.name,
       this.price,
-      this.priceIcon,
-      this.priceIconLink,
       this.images,
       this.rarity,
       this.type,
@@ -58,8 +54,6 @@ class Data {
     id = json['id'];
     name = json['name'];
     price = json['price'];
-    priceIcon = json['priceIcon'];
-    priceIconLink = json['priceIconLink'];
     images =
         json['images'] != null ? new Images.fromJson(json['images']) : null;
     rarity = json['rarity'];
@@ -75,8 +69,6 @@ class Data {
     data['id'] = this.id;
     data['name'] = this.name;
     data['price'] = this.price;
-    data['priceIcon'] = this.priceIcon;
-    data['priceIconLink'] = this.priceIconLink;
     if (this.images != null) {
       data['images'] = this.images.toJson();
     }
@@ -92,40 +84,40 @@ class Data {
 
 class Images {
   String icon;
-  bool png;
-  String gallery;
-  String featured;
-  bool frontView;
-  bool backView;
+  // bool png;
+  // String gallery;
+  // String featured;
+  // bool frontView;
+  // bool backView;
   bool resizeAvailable;
 
   Images(
       {this.icon,
-      this.png,
-      this.gallery,
-      this.featured,
-      this.frontView,
-      this.backView,
+      // this.png,
+      // this.gallery,
+      // this.featured,
+      // this.frontView,
+      // this.backView,
       this.resizeAvailable});
 
   Images.fromJson(Map<String, dynamic> json) {
     icon = json['icon'];
-    png = json['png'];
-    gallery = json['gallery'];
-    featured = json['featured'];
-    frontView = json['frontView'];
-    backView = json['backView'];
+    // png = json['png'];
+    // gallery = json['gallery'];
+    // featured = json['featured'];
+    // frontView = json['frontView'];
+    // backView = json['backView'];
     resizeAvailable = json['resizeAvailable'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['icon'] = this.icon;
-    data['png'] = this.png;
-    data['gallery'] = this.gallery;
-    data['featured'] = this.featured;
-    data['frontView'] = this.frontView;
-    data['backView'] = this.backView;
+    // data['png'] = this.png;
+    // data['gallery'] = this.gallery;
+    // data['featured'] = this.featured;
+    // data['frontView'] = this.frontView;
+    // data['backView'] = this.backView;
     data['resizeAvailable'] = this.resizeAvailable;
     return data;
   }

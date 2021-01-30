@@ -33,10 +33,8 @@ jobs:
           git init
           git config --global user.name  "jawhnypoh"
           git config --global user.email "po.johnny@gmail.com"
-          git config --global init.defaultBranch master
           git status
           git remote add origin https://${{ secrets.ACCESS_TOKEN }}@github.com/jawhnypoh/fortnite_sweaty_gamerz.git
-          git branch -m master
           git checkout -b gh-pages
           git add .
           git commit -m "Updated docs"
