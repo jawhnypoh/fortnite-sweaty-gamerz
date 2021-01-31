@@ -12,7 +12,7 @@ class Utilities {
       case 'rare':
         return Colors.blue[900];
       case 'epic':
-        return Colors.purple[700];
+        return Colors.deepPurple[800];
       case 'legendary':
         return Colors.orange[400];
       case 'icon_series':
@@ -20,7 +20,7 @@ class Utilities {
       case 'marvel':
         return Colors.red[900];
       case 'dark':
-        return Colors.deepPurple[800];
+        return Colors.purple[700];
       case 'shadow':
         return Colors.blueGrey[900];
     }

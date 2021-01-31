@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/current_items_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/utilities.dart';
+import 'package:fortnite_sweaty_gamerz/views/SingleFeaturedItemView.dart';
 import 'package:intl/intl.dart';
 
 class CurrentItemsView extends StatelessWidget {
@@ -35,14 +36,16 @@ class CurrentItemsView extends StatelessWidget {
                           child: Text('Featured Items',
                               style: TextStyle(fontSize: 35.0))),
                       const Padding(padding: EdgeInsets.only(bottom: 5.0)),
-                      buildItemsGridList(snapshot.data.data.featured),
+                      buildFeaturedItemsGridList(
+                          snapshot.data.data.featured, context),
                       const Padding(padding: EdgeInsets.only(bottom: 30.0)),
                       const Divider(color: Colors.grey),
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Text('Daily Items',
                               style: TextStyle(fontSize: 35.0))),
-                      buildItemsGridList(snapshot.data.data.daily),
+                      buildDailyItemsGridList(
+                          snapshot.data.data.daily, context),
                     ],
                   ),
                 );
@@ -80,22 +83,39 @@ class CurrentItemsView extends StatelessWidget {
     )));
   }
 
-  Widget buildItemsGridList(List featuredItems) {
+  Widget buildFeaturedItemsGridList(List items, BuildContext context) {
     return Container(
         height: 800.0,
         child: GridView.count(
           crossAxisCount: 2,
-          children: List.generate(featuredItems.length, (index) {
+          children: List.generate(items.length, (index) {
             return Container(
                 margin: EdgeInsets.all(10.0),
-                color:
-                    Utilities().determineBGColor(featuredItems[index].rarity),
+                color: Utilities().determineBGColor(items[index].rarity),
                 child: Center(
                     child: Stack(children: <Widget>[
-                  buildItemImageAndText(featuredItems[index].name,
-                      featuredItems[index].shopImages.icon),
-                  buildItemPriceText(featuredItems[index].price,
-                      featuredItems[index].priceIconLink),
+                  buildFeaturedItemImageAndText(items[index], context),
+                  buildItemPriceText(
+                      items[index].price, items[index].priceIconLink),
+                ])));
+          }),
+        ));
+  }
+
+  Widget buildDailyItemsGridList(List items, BuildContext context) {
+    return Container(
+        height: 800.0,
+        child: GridView.count(
+          crossAxisCount: 2,
+          children: List.generate(items.length, (index) {
+            return Container(
+                margin: EdgeInsets.all(10.0),
+                color: Utilities().determineBGColor(items[index].rarity),
+                child: Center(
+                    child: Stack(children: <Widget>[
+                  buildDailyItemImageAndText(items[index], context),
+                  buildItemPriceText(
+                      items[index].price, items[index].priceIconLink),
                 ])));
           }),
         ));
@@ -118,25 +138,69 @@ class CurrentItemsView extends StatelessWidget {
         ));
   }
 
-  Widget buildItemImageAndText(String name, String imageLink) {
-    return Container(
-        width: 240,
-        height: 240,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover, image: NetworkImage(imageLink))),
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          width: double.infinity,
-          color: Color(0xFF0E3311).withOpacity(0.7),
-          child: Padding(
-            padding: EdgeInsets.all(5.0),
-            child: Text(
-              name,
-              style: TextStyle(fontSize: 35.0),
-              textAlign: TextAlign.center,
+  Widget buildFeaturedItemImageAndText(Featured item, BuildContext context) {
+    return InkWell(
+      child: Container(
+          width: 240,
+          height: 240,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(item.shopImages.icon))),
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            width: double.infinity,
+            color: Color(0xFF0E3311).withOpacity(0.7),
+            child: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                item.name,
+                style: TextStyle(fontSize: 35.0),
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-        ));
+          )),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => SingleFeaturedItemView(
+                      featuredItem: item,
+                    )));
+      },
+    );
+  }
+
+  Widget buildDailyItemImageAndText(Daily item, BuildContext context) {
+    return InkWell(
+      child: Container(
+          width: 240,
+          height: 240,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(item.shopImages.icon))),
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            width: double.infinity,
+            color: Color(0xFF0E3311).withOpacity(0.7),
+            child: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                item.name,
+                style: TextStyle(fontSize: 35.0),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          )),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => SingleItemView(
+                      itemInfo: null,
+                    )));
+      },
+    );
   }
 }
