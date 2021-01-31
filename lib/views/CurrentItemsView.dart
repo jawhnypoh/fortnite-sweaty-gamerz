@@ -197,8 +197,8 @@ class CurrentItemsView extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => SingleItemView(
-                      itemInfo: null,
+                builder: (context) => SingleFeaturedItemView(
+                      featuredItem: null,
                     )));
       },
     );

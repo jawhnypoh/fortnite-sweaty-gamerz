@@ -15,6 +15,19 @@ class SingleFeaturedItemViewState extends State<SingleFeaturedItemView> {
         title: Text(featuredItem.name),
         centerTitle: true,
       ),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                height: MediaQuery.of(context).size.height / 3,
+                child: Image.network(featuredItem.shopImages.icon),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
