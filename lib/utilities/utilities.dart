@@ -1,6 +1,7 @@
 // Utilities file for commonly used functions
 
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 
 class Utilities {
   Color determineBGColor(String rarity) {
@@ -24,5 +25,9 @@ class Utilities {
       case 'shadow':
         return Colors.blueGrey[900];
     }
+  }
+
+  String convertDateTime(String dateTime) {
+    return Jiffy(dateTime).format('MMM do, yyyy');
   }
 }
