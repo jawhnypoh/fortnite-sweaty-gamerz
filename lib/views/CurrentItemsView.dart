@@ -147,7 +147,9 @@ class CurrentItemsView extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(item.shopImages.icon))),
+                  image: NetworkImage(item.shopImages.featured != ""
+                      ? item.shopImages.featured
+                      : item.shopImages.icon))),
           alignment: Alignment.bottomCenter,
           child: Container(
             width: double.infinity,
@@ -180,7 +182,9 @@ class CurrentItemsView extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(item.shopImages.icon))),
+                  image: NetworkImage(item.shopImages.featured != ""
+                      ? item.shopImages.featured
+                      : item.shopImages.icon))),
           alignment: Alignment.bottomCenter,
           child: Container(
             width: double.infinity,

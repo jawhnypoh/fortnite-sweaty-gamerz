@@ -23,13 +23,7 @@ class SingleFeaturedItemViewState extends State<SingleFeaturedItemView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               const Padding(padding: EdgeInsets.only(top: 20.0)),
-              Container(
-                margin: EdgeInsets.only(left: 10.0, right: 10.0),
-                color: Utilities().determineBGColor(featuredItem.rarity),
-                height: MediaQuery.of(context).size.height / 4,
-                width: MediaQuery.of(context).size.width,
-                child: Image.network(featuredItem.shopImages.icon),
-              ),
+              buildItemImageContainer(),
               const Padding(padding: EdgeInsets.only(top: 5.0)),
               Text('"' + featuredItem.description + '"',
                   style: TextStyle(
@@ -53,6 +47,18 @@ class SingleFeaturedItemViewState extends State<SingleFeaturedItemView> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildItemImageContainer() {
+    return Container(
+      margin: EdgeInsets.only(left: 10.0, right: 10.0),
+      color: Utilities().determineBGColor(featuredItem.rarity),
+      height: MediaQuery.of(context).size.height / 4,
+      width: MediaQuery.of(context).size.width,
+      child: Image.network(featuredItem.shopImages.featured != ""
+          ? featuredItem.shopImages.featured
+          : featuredItem.shopImages.icon),
     );
   }
 
