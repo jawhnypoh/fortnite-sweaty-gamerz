@@ -80,8 +80,11 @@ class SingleFeaturedItemViewState extends State<SingleFeaturedItemView> {
           color: Utilities().determineBGColor(featuredItem.rarity),
           borderRadius: BorderRadius.circular(10.0)),
       padding: EdgeInsets.all(9.0),
-      child: Text(featuredItem.rarity,
-          style: TextStyle(fontSize: 20.0, fontFamily: 'RobotoMono')),
+      child: Text(Utilities().convertRarityText(featuredItem.rarity),
+          style: TextStyle(
+              fontSize: 12.0,
+              fontFamily: 'RobotoMono',
+              fontWeight: FontWeight.bold)),
     );
   }
 

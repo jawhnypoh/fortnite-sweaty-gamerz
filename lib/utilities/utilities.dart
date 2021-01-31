@@ -27,7 +27,18 @@ class Utilities {
     }
   }
 
+  String convertRarityText(String rarity) {
+    if (rarity == 'icon_series') {
+      rarity = 'icon series';
+    }
+    return rarity.toUpperCase();
+  }
+
   String convertDateTime(String dateTime) {
     return Jiffy(dateTime).format('MMM do, yyyy');
+  }
+
+  String convertFullDateTime(String dateTime) {
+    return Jiffy(dateTime).format('MMMM do, yyyy');
   }
 }

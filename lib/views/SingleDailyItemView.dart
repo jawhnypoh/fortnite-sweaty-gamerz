@@ -79,8 +79,11 @@ class SingleDailyItemViewState extends State<SingleDailyItemView> {
           color: Utilities().determineBGColor(dailyItem.rarity),
           borderRadius: BorderRadius.circular(10.0)),
       padding: EdgeInsets.all(9.0),
-      child: Text(dailyItem.rarity,
-          style: TextStyle(fontSize: 20.0, fontFamily: 'RobotoMono')),
+      child: Text(Utilities().convertRarityText(dailyItem.rarity),
+          style: TextStyle(
+              fontSize: 12.0,
+              fontFamily: 'RobotoMono',
+              fontWeight: FontWeight.bold)),
     );
   }
 

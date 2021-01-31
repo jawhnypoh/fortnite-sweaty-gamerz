@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fortnite_sweaty_gamerz/views/CurrentItemsView.dart';
+import 'package:fortnite_sweaty_gamerz/views/DailyItemsView.dart';
+import 'package:fortnite_sweaty_gamerz/views/FeaturedItemsView.dart';
 import 'package:fortnite_sweaty_gamerz/views/UpcomingItemsView.dart';
 
 class ItemShopView extends StatefulWidget {
@@ -13,7 +14,8 @@ class ItemShopView extends StatefulWidget {
 class ItemShopViewState extends State<ItemShopView>
     with TickerProviderStateMixin {
   final List<Widget> screens = [
-    const CurrentItemsView(key: PageStorageKey('Current')),
+    const FeaturedItemsView(key: PageStorageKey('Featured')),
+    const DailyItemsView(key: PageStorageKey('Daily')),
     const UpcomingItemsView(key: PageStorageKey('Upcoming')),
   ];
 
@@ -39,9 +41,11 @@ class ItemShopViewState extends State<ItemShopView>
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.calendar), label: 'Current'),
+              icon: FaIcon(FontAwesomeIcons.star), label: 'Featured'),
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.newspaper), label: 'Upcoming')
+              icon: FaIcon(FontAwesomeIcons.calendar), label: 'Daily'),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.clock), label: 'Upcoming')
         ],
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedIndex,
