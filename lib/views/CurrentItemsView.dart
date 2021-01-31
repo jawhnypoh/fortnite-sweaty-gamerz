@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/current_items_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/utilities.dart';
+import 'package:fortnite_sweaty_gamerz/views/SingleDailyItemView.dart';
 import 'package:fortnite_sweaty_gamerz/views/SingleFeaturedItemView.dart';
 import 'package:intl/intl.dart';
 
@@ -197,8 +198,8 @@ class CurrentItemsView extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => SingleFeaturedItemView(
-                      featuredItem: null,
+                builder: (context) => SingleDailyItemView(
+                      dailyItem: item,
                     )));
       },
     );

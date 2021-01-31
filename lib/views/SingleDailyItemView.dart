@@ -1,20 +1,19 @@
-// Single Featured Item Screen
+// Single Daily Item Screen
 
 import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/current_items_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/utilities.dart';
 
-class SingleFeaturedItemViewState extends State<SingleFeaturedItemView> {
-  Featured featuredItem;
+class SingleDailyItemViewState extends State<SingleDailyItemView> {
+  Daily dailyItem;
 
-  SingleFeaturedItemViewState(this.featuredItem);
+  SingleDailyItemViewState(this.dailyItem);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(featuredItem.name, style: TextStyle(fontFamily: 'RobotoMono')),
+        title: Text(dailyItem.name, style: TextStyle(fontFamily: 'RobotoMono')),
         centerTitle: true,
       ),
       body: Container(
@@ -25,13 +24,13 @@ class SingleFeaturedItemViewState extends State<SingleFeaturedItemView> {
               const Padding(padding: EdgeInsets.only(top: 20.0)),
               Container(
                 margin: EdgeInsets.only(left: 10.0, right: 10.0),
-                color: Utilities().determineBGColor(featuredItem.rarity),
+                color: Utilities().determineBGColor(dailyItem.rarity),
                 height: MediaQuery.of(context).size.height / 4,
                 width: MediaQuery.of(context).size.width,
-                child: Image.network(featuredItem.shopImages.icon),
+                child: Image.network(dailyItem.shopImages.icon),
               ),
               const Padding(padding: EdgeInsets.only(top: 5.0)),
-              Text('"' + featuredItem.description + '"',
+              Text('"' + dailyItem.description + '"',
                   style: TextStyle(
                       fontSize: 15.0,
                       fontStyle: FontStyle.italic,
@@ -62,7 +61,7 @@ class SingleFeaturedItemViewState extends State<SingleFeaturedItemView> {
       children: <Widget>[
         buildRarityText(),
         const Padding(padding: EdgeInsets.only(left: 5.0, right: 5.0)),
-        Text(featuredItem.readableType,
+        Text(dailyItem.readableType,
             style: TextStyle(fontSize: 25.0, fontFamily: 'RobotoMono')),
       ],
     );
@@ -71,10 +70,10 @@ class SingleFeaturedItemViewState extends State<SingleFeaturedItemView> {
   Widget buildRarityText() {
     return Container(
       decoration: BoxDecoration(
-          color: Utilities().determineBGColor(featuredItem.rarity),
+          color: Utilities().determineBGColor(dailyItem.rarity),
           borderRadius: BorderRadius.circular(10.0)),
       padding: EdgeInsets.all(9.0),
-      child: Text(featuredItem.rarity,
+      child: Text(dailyItem.rarity,
           style: TextStyle(fontSize: 20.0, fontFamily: 'RobotoMono')),
     );
   }
@@ -94,9 +93,9 @@ class SingleFeaturedItemViewState extends State<SingleFeaturedItemView> {
               height: 40.0,
               decoration: BoxDecoration(
                   image: new DecorationImage(
-                      image: NetworkImage(featuredItem.priceIconLink))),
+                      image: NetworkImage(dailyItem.priceIconLink))),
             ),
-            Text(featuredItem.price, style: TextStyle(fontSize: 30.0))
+            Text(dailyItem.price, style: TextStyle(fontSize: 30.0))
           ],
         ));
   }
@@ -108,30 +107,28 @@ class SingleFeaturedItemViewState extends State<SingleFeaturedItemView> {
       children: <Widget>[
         Text(
             'Released: ' +
-                Utilities().convertDateTime(featuredItem.history.firstSeen),
+                Utilities().convertDateTime(dailyItem.history.firstSeen),
             style: TextStyle(fontSize: 20.0, fontFamily: 'RobotoMono')),
         const Padding(padding: EdgeInsets.only(top: 5.0)),
         Text(
             'Last Seen: ' +
-                Utilities().convertDateTime(featuredItem.history.lastSeen),
+                Utilities().convertDateTime(dailyItem.history.lastSeen),
             style: TextStyle(fontSize: 20.0, fontFamily: 'RobotoMono')),
         const Padding(padding: EdgeInsets.only(top: 5.0)),
-        Text('Occurences: ' + featuredItem.history.occurrences.toString(),
+        Text('Occurences: ' + dailyItem.history.occurrences.toString(),
             style: TextStyle(fontSize: 20.0, fontFamily: 'RobotoMono')),
       ],
     ));
   }
 }
 
-class SingleFeaturedItemView extends StatefulWidget {
-  // Declare featuredItem that holds item info
-  final Featured featuredItem;
+class SingleDailyItemView extends StatefulWidget {
+  // Declare dailyItem that holds item info
+  final Daily dailyItem;
 
-  // Require featuredItem in constructor
-  SingleFeaturedItemView({Key key, @required this.featuredItem})
-      : super(key: key);
+  // Require dailyItem in constructor
+  SingleDailyItemView({Key key, @required this.dailyItem}) : super(key: key);
 
   @override
-  SingleFeaturedItemViewState createState() =>
-      SingleFeaturedItemViewState(featuredItem);
+  SingleDailyItemViewState createState() => SingleDailyItemViewState(dailyItem);
 }
