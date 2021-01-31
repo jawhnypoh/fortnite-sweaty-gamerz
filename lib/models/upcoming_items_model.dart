@@ -35,7 +35,6 @@ class Data {
   String slug;
   String readableType;
   String description;
-  bool bundleSet;
 
   Data(
       {this.id,
@@ -45,8 +44,7 @@ class Data {
       this.type,
       this.slug,
       this.readableType,
-      this.description,
-      this.bundleSet});
+      this.description});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -58,7 +56,6 @@ class Data {
     slug = json['slug'];
     readableType = json['readableType'];
     description = json['description'];
-    bundleSet = json['bundleSet'];
   }
 
   Map<String, dynamic> toJson() {
@@ -73,7 +70,6 @@ class Data {
     data['slug'] = this.slug;
     data['readableType'] = this.readableType;
     data['description'] = this.description;
-    data['bundleSet'] = this.bundleSet;
     return data;
   }
 }
