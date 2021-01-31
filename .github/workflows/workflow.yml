@@ -1,41 +1,45 @@
-name: Fortnite Sweaty Gamerz Web
+name: 'Deploy Flutter web app to github pages'
+description: 'Automates the build and deployment of your Flutter web app on Github gh pages'
+author: 'erickzanardo'
 
-on: [push]
+branding:
+  color: blue
+  icon: code
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-        
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-      - uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '1.12.x' # you can use 1.12
-          channel: 'beta' # Currently you have to use beta channel for Flutter web.
-      - name: Upgrades flutter
-        run: flutter upgrade
-        working-directory: .
-      - name: Enable Web
-        run: flutter config --enable-web
-        working-directory: .
-      - name: Install dependencies
-        run: flutter packages get
-        working-directory: .
-      - name: Build Web
-        run: flutter build web
-        working-directory: .
-      - name: Deploy
-        run: |
-          cd build/web
-          git init
-          git config --global user.name  "jawhnypoh"
-          git config --global user.email "po.johnny@gmail.com"
-          git status
-          git remote add origin https://${{ secrets.ACCESS_TOKEN }}@github.com/jawhnypoh/fortnite_sweaty_gamerz.git
-          git checkout -b main
-          git add .
-          git commit -m "Updated docs"
-          git push origin main -f
+inputs:
+  useCanvasKit:
+    description: 'If the build should use skia (canvas kit) or not (default false)'
+    required: false
+    default: false
+  workingDir:
+    description: 'The directory where the project is (default .)'
+    required: false
+    default: .
+
+runs:
+  using: 'composite'
+  steps:
+    - run: flutter config --enable-web
+      shell: bash
+      working-directory: ${{inputs.workingDir}}
+    - run: flutter pub get
+      shell: bash
+      working-directory: ${{inputs.workingDir}}
+    - run: flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=${{inputs.useCanvasKit}}
+      shell: bash
+      working-directory: ${{inputs.workingDir}}
+    - run: git config user.name github-actions
+      shell: bash
+      working-directory: ${{inputs.workingDir}}
+    - run: git config user.email github-actions@github.com
+      shell: bash
+      working-directory: ${{inputs.workingDir}}
+    - run: git --work-tree build/web add --all
+      shell: bash
+      working-directory: ${{inputs.workingDir}}
+    - run: git commit -m "Automatic deployment by github-actions"
+      shell: bash
+      working-directory: ${{inputs.workingDir}}
+    - run: git push origin HEAD:gh-pages --force
+      shell: bash
+      working-directory: ${{inputs.workingDir}}
