@@ -35,7 +35,7 @@ jobs:
           git config --global user.email "po.johnny@gmail.com"
           git status
           git remote add origin https://${{ secrets.ACCESS_TOKEN }}@github.com/jawhnypoh/fortnite_sweaty_gamerz.git
-          git checkout -b gh-pages
+          git checkout -b main
           git add .
           git commit -m "Updated docs"
-          git push origin gh-pages -f
+          git push origin main -f
