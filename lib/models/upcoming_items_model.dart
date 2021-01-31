@@ -29,52 +29,51 @@ class UpcomingItemsModel {
 class Data {
   String id;
   String name;
-  Images images;
+  ShopImages shopImages;
   String rarity;
   String type;
   String slug;
   String readableType;
-  String description;
+  // String description;
 
   Data(
       {this.id,
       this.name,
-      this.images,
+      this.shopImages,
       this.rarity,
       this.type,
       this.slug,
-      this.readableType,
-      this.description});
+      this.readableType});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    images =
-        json['images'] != null ? new Images.fromJson(json['images']) : null;
+    shopImages =
+        json['images'] != null ? new ShopImages.fromJson(json['images']) : null;
     rarity = json['rarity'];
     type = json['type'];
     slug = json['slug'];
     readableType = json['readableType'];
-    description = json['description'];
+    // description = json['description'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
-    if (this.images != null) {
-      data['images'] = this.images.toJson();
+    if (this.shopImages != null) {
+      data['images'] = this.shopImages.toJson();
     }
     data['rarity'] = this.rarity;
     data['type'] = this.type;
     data['slug'] = this.slug;
     data['readableType'] = this.readableType;
-    data['description'] = this.description;
+    // data['description'] = this.description;
     return data;
   }
 }
 
-class Images {
+class ShopImages {
   String icon;
   // bool png;
   // String gallery;
@@ -83,7 +82,7 @@ class Images {
   // bool backView;
   bool resizeAvailable;
 
-  Images(
+  ShopImages(
       {this.icon,
       // this.png,
       // this.gallery,
@@ -92,7 +91,7 @@ class Images {
       // this.backView,
       this.resizeAvailable});
 
-  Images.fromJson(Map<String, dynamic> json) {
+  ShopImages.fromJson(Map<String, dynamic> json) {
     icon = json['icon'];
     // png = json['png'];
     // gallery = json['gallery'];

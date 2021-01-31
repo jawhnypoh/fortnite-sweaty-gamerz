@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/current_items_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
+import 'package:fortnite_sweaty_gamerz/utilities/utilities.dart';
 import 'package:intl/intl.dart';
 
 class CurrentItemsView extends StatelessWidget {
@@ -87,7 +88,8 @@ class CurrentItemsView extends StatelessWidget {
           children: List.generate(featuredItems.length, (index) {
             return Container(
                 margin: EdgeInsets.all(10.0),
-                color: determineBGColor(featuredItems[index].rarity),
+                color:
+                    Utilities().determineBGColor(featuredItems[index].rarity),
                 child: Center(
                     child: Stack(children: <Widget>[
                   buildItemImageAndText(featuredItems[index].name,
@@ -136,22 +138,5 @@ class CurrentItemsView extends StatelessWidget {
             ),
           ),
         ));
-  }
-
-  Color determineBGColor(String rarity) {
-    switch (rarity) {
-      case 'common':
-        return Colors.grey;
-      case 'uncommon':
-        return Colors.green[800];
-      case 'rare':
-        return Colors.blue[900];
-      case 'epic':
-        return Colors.purple[700];
-      case 'legendary':
-        return Colors.orange[400];
-      case 'icon_series':
-        return Colors.teal[600];
-    }
   }
 }

@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:fortnite_sweaty_gamerz/models/current_items_model.dart';
 import 'package:fortnite_sweaty_gamerz/models/player_stats_model.dart';
 import 'dart:convert';
-
 import 'package:fortnite_sweaty_gamerz/models/upcoming_items_model.dart';
 
 class ApiResources {
@@ -30,7 +29,7 @@ class ApiResources {
     }
   }
 
-  // Get item shop stuff from fnbr.co api
+  // Get item current shop stuff from fnbr.co api
   Future<CurrentItemsModel> getCurrentItemShopResults() async {
     try {
       dio.options.headers = {'x-api-key': fnbrApiKey};
@@ -45,7 +44,7 @@ class ApiResources {
     }
   }
 
-  // Get item shop stuff from fnbr.co api
+  // Get upcoming item shop stuff from fnbr.co api
   Future<UpcomingItemsModel> getUpcomingItemShopResults() async {
     try {
       dio.options.headers = {'x-api-key': fnbrApiKey};
