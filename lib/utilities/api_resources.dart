@@ -1,5 +1,6 @@
 // API Resources methods
 import 'package:dio/dio.dart';
+import 'package:fortnite_sweaty_gamerz/models/all_news_model.dart';
 import 'package:fortnite_sweaty_gamerz/models/current_items_model.dart';
 import 'package:fortnite_sweaty_gamerz/models/player_stats_model.dart';
 import 'dart:convert';
@@ -12,6 +13,7 @@ class ApiResources {
   final String playerStatsURL = "https://fortnite-api.com/v1/stats/br/v2?name=";
   final String currentItemShopURL = "https://fnbr.co/api/shop";
   final String upcomingItemShopURL = "https://fnbr.co/api/upcoming";
+  final String fortniteNewsURL = "https://fortnite-api.com/v2/news";
 
   var dio = Dio();
 
@@ -54,6 +56,20 @@ class ApiResources {
       print(jsonResult);
 
       return UpcomingItemsModel.fromJson(jsonResult);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // Get all Fortnite related news from fortnite-api
+  Future<AllNewsModel> getAllNewsResults() async {
+    try {
+      final Response response = await dio.get(fortniteNewsURL);
+      final jsonResult = json.decode(response.toString());
+
+      print(jsonResult);
+
+      return AllNewsModel.fromJson(jsonResult);
     } catch (e) {
       print(e);
     }

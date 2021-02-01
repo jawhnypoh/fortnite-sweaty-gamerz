@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/player_stats_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
 import 'package:fortnite_sweaty_gamerz/views/ItemShopView.dart';
+import 'package:fortnite_sweaty_gamerz/views/NewsListView.dart';
 
 void main() {
   runApp(MyApp());
@@ -98,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(builder: (context) => ItemShopView()));
           },
           padding: EdgeInsets.all(0.0),
-          child: Image.network('images/store.jpg',
+          child: Image.asset('images/store.jpg',
               height: 275, width: 550, fit: BoxFit.fitWidth),
         ),
       ),
@@ -112,9 +113,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: FlatButton(
           height: 200.0,
           minWidth: MediaQuery.of(context).size.width - 100.0,
-          onPressed: null,
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NewsListView()));
+          },
           padding: EdgeInsets.all(0.0),
-          child: Image.network('images/news.jpg',
+          child: Image.asset('images/news.jpg',
               height: 275, width: 550, fit: BoxFit.fitWidth),
         ),
       ),
