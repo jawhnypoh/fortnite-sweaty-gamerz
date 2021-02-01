@@ -27,6 +27,7 @@ class UpcomingItemsModel {
 }
 
 class Data {
+  bool isFalse = false;
   String id;
   String name;
   ShopImages shopImages;
@@ -34,7 +35,7 @@ class Data {
   String type;
   String slug;
   String readableType;
-  // String description;
+  String description;
 
   Data(
       {this.id,
@@ -43,7 +44,8 @@ class Data {
       this.rarity,
       this.type,
       this.slug,
-      this.readableType});
+      this.readableType,
+      this.description});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -54,7 +56,7 @@ class Data {
     type = json['type'];
     slug = json['slug'];
     readableType = json['readableType'];
-    // description = json['description'];
+    description = (json['description'] == isFalse ? "" : json['description']);
   }
 
   Map<String, dynamic> toJson() {
@@ -68,47 +70,48 @@ class Data {
     data['type'] = this.type;
     data['slug'] = this.slug;
     data['readableType'] = this.readableType;
-    // data['description'] = this.description;
+    data['description'] = this.description;
     return data;
   }
 }
 
 class ShopImages {
+  bool isFalse = false;
   String icon;
-  // bool png;
-  // String gallery;
-  // String featured;
-  // bool frontView;
-  // bool backView;
+  String png;
+  String gallery;
+  String featured;
+  String frontView;
+  String backView;
   bool resizeAvailable;
 
   ShopImages(
       {this.icon,
-      // this.png,
-      // this.gallery,
-      // this.featured,
-      // this.frontView,
-      // this.backView,
+      this.png,
+      this.gallery,
+      this.featured,
+      this.frontView,
+      this.backView,
       this.resizeAvailable});
 
   ShopImages.fromJson(Map<String, dynamic> json) {
     icon = json['icon'];
-    // png = json['png'];
-    // gallery = json['gallery'];
-    // featured = json['featured'];
-    // frontView = json['frontView'];
-    // backView = json['backView'];
+    png = (json['png'] == isFalse ? "" : json['png']);
+    gallery = (json['gallery'] == isFalse ? "" : json['gallery']);
+    featured = (json['featured'] == isFalse ? "" : json['featured']);
+    frontView = (json['frontView'] == isFalse ? "" : json['frontView']);
+    backView = (json['backView'] == isFalse ? "" : json['backView']);
     resizeAvailable = json['resizeAvailable'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['icon'] = this.icon;
-    // data['png'] = this.png;
-    // data['gallery'] = this.gallery;
-    // data['featured'] = this.featured;
-    // data['frontView'] = this.frontView;
-    // data['backView'] = this.backView;
+    data['png'] = this.png;
+    data['gallery'] = this.gallery;
+    data['featured'] = this.featured;
+    data['frontView'] = this.frontView;
+    data['backView'] = this.backView;
     data['resizeAvailable'] = this.resizeAvailable;
     return data;
   }

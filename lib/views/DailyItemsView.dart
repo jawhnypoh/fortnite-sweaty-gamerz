@@ -34,11 +34,6 @@ class DailyItemsView extends StatelessWidget {
                               fontSize: 20, fontFamily: 'RobotoMono')),
                       buildDateTime(snapshot.data.data),
                       const Padding(padding: EdgeInsets.only(bottom: 40.0)),
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('Featured Items',
-                              style: TextStyle(fontSize: 35.0))),
-                      const Padding(padding: EdgeInsets.only(bottom: 5.0)),
                       buildDailyItemsGridList(
                           snapshot.data.data.daily, context),
                       const Padding(padding: EdgeInsets.only(bottom: 30.0)),

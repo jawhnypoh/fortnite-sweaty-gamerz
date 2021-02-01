@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/upcoming_items_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/utilities.dart';
+import 'package:fortnite_sweaty_gamerz/views/SingleUpcomingItemView.dart';
 
 class UpcomingItemsView extends StatelessWidget {
   const UpcomingItemsView({Key key}) : super(key: key);
@@ -71,32 +72,41 @@ class UpcomingItemsView extends StatelessWidget {
                     Utilities().determineBGColor(upcomingItems[index].rarity),
                 child: Center(
                     child: Stack(children: <Widget>[
-                  buildItemImageAndText(upcomingItems[index].name,
-                      upcomingItems[index].shopImages.icon)
+                  buildItemImageAndText(upcomingItems[index], context)
                 ])));
           }),
         ));
   }
 
-  Widget buildItemImageAndText(String name, String imageLink) {
-    return Container(
-        width: 240,
-        height: 240,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover, image: NetworkImage(imageLink))),
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          width: double.infinity,
-          color: Color(0xFF0E3311).withOpacity(0.7),
-          child: Padding(
-            padding: EdgeInsets.all(5.0),
-            child: Text(
-              name,
-              style: TextStyle(fontSize: 35.0),
-              textAlign: TextAlign.center,
+  Widget buildItemImageAndText(Data upcomingItem, BuildContext context) {
+    return InkWell(
+      child: Container(
+          width: 240,
+          height: 240,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(upcomingItem.shopImages.icon))),
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            width: double.infinity,
+            color: Color(0xFF0E3311).withOpacity(0.7),
+            child: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                upcomingItem.name,
+                style: TextStyle(fontSize: 35.0),
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-        ));
+          )),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    SingleUpcomingItemView(upcomingItem: upcomingItem)));
+      },
+    );
   }
 }
