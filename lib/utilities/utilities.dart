@@ -1,6 +1,7 @@
 // Utilities file for commonly used functions
 
 import 'package:flutter/material.dart';
+import 'package:fortnite_sweaty_gamerz/models/all_news_model.dart';
 import 'package:jiffy/jiffy.dart';
 
 class Utilities {
@@ -41,4 +42,6 @@ class Utilities {
   String convertFullDateTime(String dateTime) {
     return Jiffy(dateTime).format('MMMM do, yyyy');
   }
+
+  List buildNewsList(Data brNews) {}
 }

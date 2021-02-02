@@ -145,7 +145,7 @@ class Messages {
   String title;
   String body;
   String image;
-  Null adspace;
+  String adspace;
 
   Messages({this.title, this.body, this.image, this.adspace});
 
@@ -169,8 +169,8 @@ class Messages {
 class Stw {
   String hash;
   String date;
-  Null image;
-  Null motds;
+  String image;
+  List<Motds> motds;
   List<Messages> messages;
 
   Stw({this.hash, this.date, this.image, this.motds, this.messages});
