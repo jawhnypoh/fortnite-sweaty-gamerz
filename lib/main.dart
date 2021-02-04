@@ -2,6 +2,7 @@ import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/player_stats_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
+import 'package:fortnite_sweaty_gamerz/utilities/utilities.dart';
 import 'package:fortnite_sweaty_gamerz/views/ItemShopView.dart';
 import 'package:fortnite_sweaty_gamerz/views/NewsListView.dart';
 
@@ -53,8 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title:
-            Image.asset('images/br-logo.png', fit: BoxFit.contain, height: 32),
+        title: Image.asset(Utilities().getPath('images/br-logo.png'),
+            fit: BoxFit.contain, height: 32),
         centerTitle: true,
       ),
       body: Container(
@@ -99,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(builder: (context) => ItemShopView()));
           },
           padding: EdgeInsets.all(0.0),
-          child: Image.asset('images/store.jpg',
+          child: Image.asset(Utilities().getPath('images/store.png'),
               height: 275, width: 550, fit: BoxFit.fitWidth),
         ),
       ),
@@ -118,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(builder: (context) => NewsListView()));
           },
           padding: EdgeInsets.all(0.0),
-          child: Image.asset('images/news.jpg',
+          child: Image.asset(Utilities().getPath('images/news.png'),
               height: 275, width: 550, fit: BoxFit.fitWidth),
         ),
       ),
