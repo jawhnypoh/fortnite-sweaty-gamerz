@@ -62,14 +62,32 @@ class ApiResources {
   }
 
   // Get all Fortnite related news from fortnite-api
-  Future<AllNewsModel> getAllNewsResults() async {
+  Future<List<Motds>> getAllNewsResults() async {
     try {
+      List<Motds> newsList = [];
+
       final Response response = await dio.get(fortniteNewsURL);
       final jsonResult = json.decode(response.toString());
 
       print(jsonResult);
 
-      return AllNewsModel.fromJson(jsonResult);
+      AllNewsModel allNewsModel = AllNewsModel.fromJson(jsonResult);
+
+      if (allNewsModel.data.br.motds != null &&
+          allNewsModel.data.creative.motds != null) {
+        for (Motds motds in allNewsModel.data.br.motds) {
+          newsList.add(motds);
+        }
+
+        // for (Messages messages in allNewsModel.data.stw.messages) {
+        //   newsList.add(messages);
+        // }
+
+        for (Motds motds in allNewsModel.data.creative.motds) {
+          newsList.add(motds);
+        }
+      }
+      return newsList;
     } catch (e) {
       print(e);
     }

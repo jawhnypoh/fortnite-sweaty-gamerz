@@ -18,7 +18,7 @@ class NewsListView extends StatelessWidget {
       ),
       body: Container(
         margin: EdgeInsets.only(left: 10.0, right: 10.0),
-        child: FutureBuilder<AllNewsModel>(
+        child: FutureBuilder<List<Motds>>(
           future: ApiResources().getAllNewsResults(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -32,8 +32,9 @@ class NewsListView extends StatelessWidget {
                       'News',
                       style: TextStyle(fontSize: 45.0),
                     ))),
-                    const Padding(padding: EdgeInsets.only(bottom: 20.0)),
-                    buildNewsList(snapshot.data.data)
+                    const Padding(padding: EdgeInsets.only(bottom: 10.0)),
+                    buildNewsList(snapshot.data),
+                    const Padding(padding: EdgeInsets.only(bottom: 30.0)),
                   ],
                 ),
               );
@@ -57,5 +58,37 @@ class NewsListView extends StatelessWidget {
     );
   }
 
-  Widget buildNewsList(Data allNews) {}
+  Widget buildNewsList(List<Motds> allNewsList) {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: allNewsList == null ? 0 : allNewsList.length,
+        itemBuilder: (context, idx) {
+          return Card(
+            elevation: 3.0,
+            margin: EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                ClipRRect(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(5.0)),
+                    child: Image.network(allNewsList[idx].image)),
+                const Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                Text(
+                  allNewsList[idx].tabTitle == null
+                      ? allNewsList[idx].title
+                      : allNewsList[idx].tabTitle,
+                  style: TextStyle(fontSize: 30.0),
+                ),
+                Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(allNewsList[idx].body,
+                        style: TextStyle(
+                            fontSize: 17.0, fontFamily: 'RobotoMono')))
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 }
