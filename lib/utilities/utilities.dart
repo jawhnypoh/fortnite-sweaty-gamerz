@@ -44,6 +44,7 @@ class Utilities {
     return Jiffy(dateTime).format('MMMM do, yyyy');
   }
 
+  // Determine whether app is being shown on web or mobile
   String getPath(String path) {
     return (kIsWeb ? 'assets/$path' : path);
   }

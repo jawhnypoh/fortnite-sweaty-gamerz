@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(builder: (context) => ItemShopView()));
           },
           padding: EdgeInsets.all(0.0),
-          child: Image.asset(Utilities().getPath('images/store.png'),
+          child: Image.asset(Utilities().getPath('images/store.jpg'),
               height: 275, width: 550, fit: BoxFit.fitWidth),
         ),
       ),
@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(builder: (context) => NewsListView()));
           },
           padding: EdgeInsets.all(0.0),
-          child: Image.asset(Utilities().getPath('images/news.png'),
+          child: Image.asset(Utilities().getPath('images/news.jpg'),
               height: 275, width: 550, fit: BoxFit.fitWidth),
         ),
       ),
