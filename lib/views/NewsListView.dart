@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/all_news_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
+import 'package:fortnite_sweaty_gamerz/utilities/utilities.dart';
 
 class NewsListView extends StatelessWidget {
   const NewsListView({Key key}) : super(key: key);
@@ -12,8 +13,8 @@ class NewsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Image.asset('images/br-logo.png', fit: BoxFit.contain, height: 32),
+        title: Image.asset(Utilities().getPath('images/br-logo.png'),
+            fit: BoxFit.contain, height: 32),
         centerTitle: true,
       ),
       body: Container(

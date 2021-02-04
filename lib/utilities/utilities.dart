@@ -1,5 +1,6 @@
 // Utilities file for commonly used functions
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/all_news_model.dart';
 import 'package:jiffy/jiffy.dart';
@@ -43,5 +44,7 @@ class Utilities {
     return Jiffy(dateTime).format('MMMM do, yyyy');
   }
 
-  List buildNewsList(Data brNews) {}
+  String getPath(String path) {
+    return (kIsWeb ? 'assets/$path' : path);
+  }
 }
