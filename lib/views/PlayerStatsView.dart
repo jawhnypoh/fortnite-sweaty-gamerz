@@ -3,6 +3,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:fortnite_sweaty_gamerz/models/player_stats_model.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/api_resources.dart';
 import 'package:fortnite_sweaty_gamerz/utilities/utilities.dart';
@@ -10,6 +11,7 @@ import 'package:fortnite_sweaty_gamerz/utilities/utilities.dart';
 class PlayerStatsViewState extends State<PlayerStatsView> {
   Future<PlayerStatsModel> playerStatsModel;
   final TextEditingController query = TextEditingController();
+  final numberFormatter = NumberFormat('#,###', 'en_US');
   bool isLoading = false;
 
   @override
@@ -130,7 +132,6 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
             child: AutoSizeText(playerData.account.name,
                 style: TextStyle(fontSize: 60.0), maxLines: 1),
           )
-          // Utilities().buildTextSpan('Name: ', playerData.account.name, 35.0)
         ],
       ),
     );
@@ -139,14 +140,18 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
   Widget buildPlayerOverallStatsRow(All playerAll, BuildContext context) {
     return Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Utilities().buildTwoLayerStats(
-              'Wins:', playerAll.overall.wins.toString(), context),
+              'Wins:',
+              numberFormatter.format(playerAll.overall.wins).toString(),
+              context),
           Utilities().buildTwoLayerStats(
               'Win %:', playerAll.overall.winRate.toString(), context),
           Utilities().buildTwoLayerStats(
-              'Kills:', playerAll.overall.kills.toString(), context),
+              'Kills:',
+              numberFormatter.format(playerAll.overall.kills).toString(),
+              context),
           Utilities().buildTwoLayerStats(
               'K/D:', playerAll.overall.kd.toString(), context)
         ],

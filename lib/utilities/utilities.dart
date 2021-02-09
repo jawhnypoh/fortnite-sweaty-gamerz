@@ -3,7 +3,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fortnite_sweaty_gamerz/models/all_news_model.dart';
 import 'package:jiffy/jiffy.dart';
 
 class Utilities {
@@ -67,8 +66,8 @@ class Utilities {
     return Container(
         child: ConstrainedBox(
       constraints: BoxConstraints(
-          minWidth: MediaQuery.of(context).size.width / 6,
-          maxWidth: MediaQuery.of(context).size.width / 6,
+          minWidth: MediaQuery.of(context).size.width / 5,
+          maxWidth: MediaQuery.of(context).size.width / 5,
           minHeight: 80.0,
           maxHeight: 80.0),
       child: Center(
