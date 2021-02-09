@@ -82,12 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  // Future<List<PlayerStats>> searchResult(String playerName) async {
-  //   return List.generate(playerName.length, (int idx) {
-  //     return ApiResources().getPlayerStatsResults(playerName);
-  //   });
-  // }
-
   Widget playerButton(BuildContext context) {
     return Container(
       child: ConstrainedBox(
@@ -104,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Image.asset(Utilities().getPath('images/players.jpg'),
                   height: 275, width: 550, fit: BoxFit.fitWidth),
               const Padding(padding: EdgeInsets.only(bottom: 10.0)),
-              Text('FIND A SWEAT', style: TextStyle(fontSize: 40.0)),
+              Text('SWEATY STATS', style: TextStyle(fontSize: 40.0)),
             ])),
       ),
     );
@@ -148,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Image.asset(Utilities().getPath('images/news.jpg'),
                   height: 275, width: 550, fit: BoxFit.fitWidth),
               const Padding(padding: EdgeInsets.only(bottom: 10.0)),
-              Text('NEWS', style: TextStyle(fontSize: 40.0)),
+              Text('LATEST NEWS', style: TextStyle(fontSize: 40.0)),
             ])),
       ),
     );
