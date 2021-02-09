@@ -1,5 +1,6 @@
 // Player Stats View
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/player_stats_model.dart';
@@ -36,7 +37,8 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
                       buildPlayerIconAndNameRow(snapshot.data.data),
                       const Divider(color: Colors.grey),
                       const Padding(padding: EdgeInsets.only(top: 30.0)),
-                      buildPlayerOverallStatsRow(snapshot.data.data.stats.all)
+                      buildPlayerOverallStatsRow(
+                          snapshot.data.data.stats.all, context)
                     ],
                   ),
                 );
@@ -70,7 +72,7 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
               children: <Widget>[
                 Image.asset(
                   Utilities().getPath('images/llama.png'),
-                  height: 300.0,
+                  height: 280.0,
                   width: 250.0,
                   fit: BoxFit.fill,
                 ),
@@ -82,7 +84,10 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
                 const Padding(padding: EdgeInsets.only(bottom: 5.0)),
                 Text(
                     'Could not find a player with that name. Are you sure you spelled it right?',
-                    style: TextStyle(fontSize: 15.0, fontFamily: 'RobotoMono')),
+                    style: TextStyle(
+                        fontSize: 15.0,
+                        fontFamily: 'RobotoMono',
+                        color: Colors.grey[350])),
               ],
             ))));
   }
@@ -116,26 +121,34 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Image.asset(Utilities().getPath('images/user.png')),
-          Text(playerData.account.name, style: TextStyle(fontSize: 65.0)),
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+                minWidth: 300.0,
+                maxWidth: 300.0,
+                minHeight: 80.0,
+                maxHeight: 80.0),
+            child: AutoSizeText(playerData.account.name,
+                style: TextStyle(fontSize: 60.0), maxLines: 1),
+          )
           // Utilities().buildTextSpan('Name: ', playerData.account.name, 35.0)
         ],
       ),
     );
   }
 
-  Widget buildPlayerOverallStatsRow(All playerAll) {
+  Widget buildPlayerOverallStatsRow(All playerAll, BuildContext context) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Utilities()
-              .buildTwoLayerStats('Wins:', playerAll.overall.wins.toString()),
           Utilities().buildTwoLayerStats(
-              'Win %:', playerAll.overall.winRate.toString()),
-          Utilities()
-              .buildTwoLayerStats('Kills:', playerAll.overall.kills.toString()),
-          Utilities()
-              .buildTwoLayerStats('K/D:', playerAll.overall.kd.toString())
+              'Wins:', playerAll.overall.wins.toString(), context),
+          Utilities().buildTwoLayerStats(
+              'Win %:', playerAll.overall.winRate.toString(), context),
+          Utilities().buildTwoLayerStats(
+              'Kills:', playerAll.overall.kills.toString(), context),
+          Utilities().buildTwoLayerStats(
+              'K/D:', playerAll.overall.kd.toString(), context)
         ],
       ),
     );

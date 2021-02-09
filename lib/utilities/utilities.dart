@@ -1,5 +1,6 @@
 // Utilities file for commonly used functions
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fortnite_sweaty_gamerz/models/all_news_model.dart';
@@ -62,8 +63,14 @@ class Utilities {
     ]));
   }
 
-  Widget buildTwoLayerStats(String key, String value) {
+  Widget buildTwoLayerStats(String key, String value, BuildContext context) {
     return Container(
+        child: ConstrainedBox(
+      constraints: BoxConstraints(
+          minWidth: MediaQuery.of(context).size.width / 6,
+          maxWidth: MediaQuery.of(context).size.width / 6,
+          minHeight: 80.0,
+          maxHeight: 80.0),
       child: Center(
         child: Column(
           children: <Widget>[
@@ -72,10 +79,10 @@ class Utilities {
                     fontSize: 15.0,
                     fontFamily: 'RobotoMono',
                     color: Colors.grey[350])),
-            Text(value, style: TextStyle(fontSize: 50.0))
+            AutoSizeText(value, style: TextStyle(fontSize: 50.0), maxLines: 1)
           ],
         ),
       ),
-    );
+    ));
   }
 }
