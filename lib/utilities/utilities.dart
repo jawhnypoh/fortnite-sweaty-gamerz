@@ -48,4 +48,34 @@ class Utilities {
   String getPath(String path) {
     return (kIsWeb ? 'assets/$path' : path);
   }
+
+  RichText buildTextSpan(String key, String value, double fontSize) {
+    return RichText(
+        text: TextSpan(children: <TextSpan>[
+      TextSpan(
+          text: key,
+          style: TextStyle(
+              fontSize: fontSize, fontFamily: 'Fortnite', color: Colors.white)),
+      TextSpan(
+          text: value,
+          style: TextStyle(fontSize: fontSize, color: Colors.white))
+    ]));
+  }
+
+  Widget buildTwoLayerStats(String key, String value) {
+    return Container(
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            Text(key,
+                style: TextStyle(
+                    fontSize: 15.0,
+                    fontFamily: 'RobotoMono',
+                    color: Colors.grey[350])),
+            Text(value, style: TextStyle(fontSize: 50.0))
+          ],
+        ),
+      ),
+    );
+  }
 }

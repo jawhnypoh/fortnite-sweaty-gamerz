@@ -33,7 +33,10 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
                   child: Column(
                     children: <Widget>[
                       const Padding(padding: EdgeInsets.only(top: 20.0)),
-                      buildPlayerDetailRow(snapshot.data.data)
+                      buildPlayerIconAndNameRow(snapshot.data.data),
+                      const Divider(color: Colors.grey),
+                      const Padding(padding: EdgeInsets.only(top: 30.0)),
+                      buildPlayerOverallStatsRow(snapshot.data.data.stats.all)
                     ],
                   ),
                 );
@@ -107,16 +110,32 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
     );
   }
 
-  Widget buildPlayerDetailRow(Data playerData) {
+  Widget buildPlayerIconAndNameRow(Data playerData) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Image.asset(Utilities().getPath('images/user.png')),
-          Text(
-            'Name: ' + playerData.account.name,
-            style: TextStyle(fontSize: 35.0),
-          )
+          Text(playerData.account.name, style: TextStyle(fontSize: 65.0)),
+          // Utilities().buildTextSpan('Name: ', playerData.account.name, 35.0)
+        ],
+      ),
+    );
+  }
+
+  Widget buildPlayerOverallStatsRow(All playerAll) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Utilities()
+              .buildTwoLayerStats('Wins:', playerAll.overall.wins.toString()),
+          Utilities().buildTwoLayerStats(
+              'Win %:', playerAll.overall.winRate.toString()),
+          Utilities()
+              .buildTwoLayerStats('Kills:', playerAll.overall.kills.toString()),
+          Utilities()
+              .buildTwoLayerStats('K/D:', playerAll.overall.kd.toString())
         ],
       ),
     );
