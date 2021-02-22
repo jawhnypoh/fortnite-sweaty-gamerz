@@ -127,14 +127,31 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
         children: <Widget>[
           Image.asset(Utilities().getPath('images/user.png')),
           ConstrainedBox(
-            constraints: const BoxConstraints(
-                minWidth: 300.0,
-                maxWidth: 300.0,
-                minHeight: 80.0,
-                maxHeight: 80.0),
-            child: AutoSizeText(playerData.account.name,
-                style: TextStyle(fontSize: 60.0), maxLines: 1),
-          )
+              constraints: BoxConstraints(
+                  minWidth: MediaQuery.of(context).size.width / 1.5,
+                  maxWidth: MediaQuery.of(context).size.width / 1.5),
+              child: buildPlayerNameAndTimePlayed(playerData))
+        ],
+      ),
+    );
+  }
+
+  Widget buildPlayerNameAndTimePlayed(Data playerData) {
+    int timePlayed =
+        new Duration(minutes: playerData.stats.all.overall.minutesPlayed)
+            .inHours;
+    return Container(
+      child: Column(
+        children: <Widget>[
+          AutoSizeText(playerData.account.name,
+              style: TextStyle(fontSize: 60.0), maxLines: 1),
+          const Padding(padding: EdgeInsets.only(top: 10.0)),
+          AutoSizeText('Played ' + timePlayed.toString() + ' hours',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontFamily: 'RobotoMono',
+              ),
+              maxLines: 1)
         ],
       ),
     );
