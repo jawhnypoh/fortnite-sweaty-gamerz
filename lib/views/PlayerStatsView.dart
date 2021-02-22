@@ -39,8 +39,11 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
                       buildPlayerIconAndNameRow(snapshot.data.data),
                       const Divider(color: Colors.grey),
                       const Padding(padding: EdgeInsets.only(top: 30.0)),
-                      buildPlayerOverallStatsRow(
-                          snapshot.data.data.stats.all, context)
+                      buildPlayerOverallStatsSection(
+                          snapshot.data.data.stats.all, context),
+                      const Padding(padding: EdgeInsets.only(top: 10.0)),
+                      const Divider(color: Colors.grey),
+                      const Padding(padding: EdgeInsets.only(top: 30.0)),
                     ],
                   ),
                 );
@@ -137,7 +140,19 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
     );
   }
 
-  Widget buildPlayerOverallStatsRow(All playerAll, BuildContext context) {
+  Widget buildPlayerOverallStatsSection(All playerAll, BuildContext context) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          buildPlayerOverallStatsRow1(playerAll, context),
+          const Padding(padding: EdgeInsets.only(top: 10.0)),
+          buildPlayerOverallStatsRow2(playerAll, context)
+        ],
+      ),
+    );
+  }
+
+  Widget buildPlayerOverallStatsRow1(All playerAll, BuildContext context) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -148,6 +163,16 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
               context),
           Utilities().buildTwoLayerStats(
               'Win %:', playerAll.overall.winRate.toString(), context),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPlayerOverallStatsRow2(All playerAll, BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
           Utilities().buildTwoLayerStats(
               'Kills:',
               numberFormatter.format(playerAll.overall.kills).toString(),

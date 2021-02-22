@@ -22,10 +22,14 @@ class Utilities {
         return Colors.teal[600];
       case 'marvel':
         return Colors.red[900];
+      case 'DC':
+        return Colors.indigo[800];
       case 'dark':
         return Colors.purple[700];
       case 'shadow':
         return Colors.blueGrey[900];
+      case 'slurp':
+        return Colors.teal[100];
     }
   }
 
@@ -66,10 +70,8 @@ class Utilities {
     return Container(
         child: ConstrainedBox(
       constraints: BoxConstraints(
-          minWidth: MediaQuery.of(context).size.width / 5,
-          maxWidth: MediaQuery.of(context).size.width / 5,
-          minHeight: 80.0,
-          maxHeight: 80.0),
+          minWidth: MediaQuery.of(context).size.width / 3,
+          maxWidth: MediaQuery.of(context).size.width / 3),
       child: Center(
         child: Column(
           children: <Widget>[
