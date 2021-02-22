@@ -22,8 +22,8 @@ class Utilities {
         return Colors.teal[600];
       case 'marvel':
         return Colors.red[900];
-      case 'DC':
-        return Colors.indigo[800];
+      case 'dc':
+        return Colors.indigo;
       case 'dark':
         return Colors.purple[700];
       case 'shadow':

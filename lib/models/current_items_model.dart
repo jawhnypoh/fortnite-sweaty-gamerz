@@ -58,6 +58,7 @@ class Data {
 }
 
 class Featured {
+  bool isFalse = false;
   String id;
   String name;
   String price;
@@ -69,8 +70,8 @@ class Featured {
   String slug;
   String readableType;
   String description;
-  bool bundleSet;
-  bool bannerText;
+  String bundleSet;
+  String bannerText;
   History history;
 
   Featured(
@@ -102,8 +103,8 @@ class Featured {
     slug = json['slug'];
     readableType = json['readableType'];
     description = json['description'];
-    bundleSet = json['bundleSet'];
-    bannerText = json['bannerText'];
+    bundleSet = (json['bundleSet'] == isFalse ? "" : json['bundleSet']);
+    bannerText = (json['bannerText'] == isFalse ? "" : json['bannerText']);
     history =
         json['history'] != null ? new History.fromJson(json['history']) : null;
   }
@@ -133,6 +134,7 @@ class Featured {
 }
 
 class Daily {
+  bool isFalse = false;
   String id;
   String name;
   String price;
@@ -144,8 +146,8 @@ class Daily {
   String slug;
   String readableType;
   String description;
-  bool bundleSet;
-  bool bannerText;
+  String bundleSet;
+  String bannerText;
   History history;
 
   Daily(
@@ -177,8 +179,8 @@ class Daily {
     slug = json['slug'];
     readableType = json['readableType'];
     description = json['description'];
-    bundleSet = json['bundleSet'];
-    bannerText = json['bannerText'];
+    bundleSet = (json['bundleSet'] == isFalse ? "" : json['bundleSet']);
+    bannerText = (json['bannerText'] == isFalse ? "" : json['bannerText']);
     history =
         json['history'] != null ? new History.fromJson(json['history']) : null;
   }
@@ -258,35 +260,6 @@ class History {
     data['firstSeen'] = this.firstSeen;
     data['lastSeen'] = this.lastSeen;
     data['dates'] = this.dates;
-    return data;
-  }
-}
-
-class Images {
-  String icon;
-  bool png;
-  bool gallery;
-  bool featured;
-  bool resizeAvailable;
-
-  Images(
-      {this.icon, this.png, this.gallery, this.featured, this.resizeAvailable});
-
-  Images.fromJson(Map<String, dynamic> json) {
-    icon = json['icon'];
-    png = json['png'];
-    gallery = json['gallery'];
-    featured = json['featured'];
-    resizeAvailable = json['resizeAvailable'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['icon'] = this.icon;
-    data['png'] = this.png;
-    data['gallery'] = this.gallery;
-    data['featured'] = this.featured;
-    data['resizeAvailable'] = this.resizeAvailable;
     return data;
   }
 }
