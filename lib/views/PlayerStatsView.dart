@@ -44,6 +44,7 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
                       const Padding(padding: EdgeInsets.only(top: 10.0)),
                       const Divider(color: Colors.grey),
                       const Padding(padding: EdgeInsets.only(top: 30.0)),
+                      buildTeamsList(snapshot.data.data.stats.all)
                     ],
                   ),
                 );
@@ -197,6 +198,51 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
           Utilities().buildTwoLayerStats(
               'K/D:', playerAll.overall.kd.toString(), context)
         ],
+      ),
+    );
+  }
+
+  Widget buildTeamsList(All playerAll) {
+    return Container(
+      child: ListView(
+        shrinkWrap: true,
+        primary: false,
+        children: <Widget>[
+          buildTeamsListItem(
+              title: 'Solo', icon: Icons.person, playerStats: playerAll),
+          buildTeamsListItem(
+              title: 'Duos', icon: Icons.people, playerStats: playerAll),
+          buildTeamsListItem(
+              title: 'Trios', icon: Icons.group_work, playerStats: playerAll),
+          buildTeamsListItem(
+              title: 'Squads', icon: Icons.category, playerStats: playerAll)
+        ],
+      ),
+    );
+  }
+
+  Widget buildTeamsListItem(
+      {int idx, String title, IconData icon, All playerStats}) {
+    return Material(
+      color: Colors.transparent,
+      child: Theme(
+        data: ThemeData(accentColor: Colors.white),
+        child: ExpansionTile(
+          leading: Icon(
+            icon,
+            size: 40,
+            color: Colors.white,
+          ),
+          title: Text(title,
+              style: TextStyle(
+                  fontSize: 30, fontFamily: 'Fortnite', color: Colors.white)),
+          subtitle: Text(
+            Utilities().determineNumberOfMatches(title, playerStats) +
+                ' Matches',
+            style: TextStyle(color: Colors.white),
+          ),
+          // children: <Widget>[for (int i = 0; i < 5; i++) cardWidget()],
+        ),
       ),
     );
   }

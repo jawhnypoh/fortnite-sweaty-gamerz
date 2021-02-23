@@ -3,9 +3,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fortnite_sweaty_gamerz/models/player_stats_model.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:intl/intl.dart';
 
 class Utilities {
+  final numberFormatter = NumberFormat('#,###', 'en_US');
+
   Color determineBGColor(String rarity) {
     switch (rarity) {
       case 'common':
@@ -85,5 +89,19 @@ class Utilities {
         ),
       ),
     ));
+  }
+
+  String determineNumberOfMatches(String title, All playerStats) {
+    switch (title) {
+      case 'Solo':
+        return numberFormatter.format(playerStats.solo.matches).toString();
+      case 'Duos':
+        return numberFormatter.format(playerStats.duo.matches).toString();
+      case 'Trios':
+        return numberFormatter.format(playerStats.trio.matches).toString();
+      case 'Squads':
+        return numberFormatter.format(playerStats.squad.matches).toString();
+    }
+    return '0';
   }
 }
