@@ -176,11 +176,11 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Utilities().buildTwoLayerStats(
-              'Wins:',
+              'Wins',
               numberFormatter.format(playerAll.overall.wins).toString(),
               context),
           Utilities().buildTwoLayerStats(
-              'Win %:', playerAll.overall.winRate.toString(), context),
+              'Win %', playerAll.overall.winRate.toString(), context),
         ],
       ),
     );
@@ -192,11 +192,11 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Utilities().buildTwoLayerStats(
-              'Kills:',
+              'Kills',
               numberFormatter.format(playerAll.overall.kills).toString(),
               context),
           Utilities().buildTwoLayerStats(
-              'K/D:', playerAll.overall.kd.toString(), context)
+              'K/D', playerAll.overall.kd.toString(), context)
         ],
       ),
     );
@@ -241,8 +241,58 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
                 ' Matches',
             style: TextStyle(color: Colors.white),
           ),
-          // children: <Widget>[for (int i = 0; i < 5; i++) cardWidget()],
+          children: <Widget>[
+            const Padding(padding: EdgeInsets.only(top: 10.0)),
+            buildTeamsDetailIntRows(
+                'Wins', 'Kills', playerStats.solo.wins, playerStats.solo.kills),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows(
+                'Win %', 'K/D', playerStats.solo.winRate, playerStats.solo.kd),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailIntRows('Top 10', 'Top 25', playerStats.solo.top10,
+                playerStats.solo.top25),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailIntRows('Time Played', 'Score',
+                playerStats.solo.minutesPlayed, playerStats.solo.score),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows('Score/Match', 'Score/Min',
+                playerStats.solo.scorePerMatch, playerStats.solo.scorePerMin),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows('Kills/Match', 'Kills/Min',
+                playerStats.solo.killsPerMatch, playerStats.solo.killsPerMin),
+            const Padding(padding: EdgeInsets.only(top: 10.0)),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget buildTeamsDetailIntRows(
+      String firstLabel, String secondLabel, int firstStat, int secondStat) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Utilities().buildTwoLayerStats(firstLabel,
+              numberFormatter.format(firstStat).toString(), context),
+          Utilities()
+              .buildTwoLayerStats(secondLabel, secondStat.toString(), context)
+        ],
+      ),
+    );
+  }
+
+  Widget buildTeamsDetailDoubleRows(String firstLabel, String secondLabel,
+      double firstStat, double secondStat) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Utilities().buildTwoLayerStats(firstLabel,
+              numberFormatter.format(firstStat).toString(), context),
+          Utilities()
+              .buildTwoLayerStats(secondLabel, secondStat.toString(), context)
+        ],
       ),
     );
   }
