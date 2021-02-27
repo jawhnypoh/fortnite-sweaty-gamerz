@@ -90,18 +90,4 @@ class Utilities {
       ),
     ));
   }
-
-  String determineNumberOfMatches(String title, All playerStats) {
-    switch (title) {
-      case 'Solo':
-        return numberFormatter.format(playerStats.solo.matches).toString();
-      case 'Duos':
-        return numberFormatter.format(playerStats.duo.matches).toString();
-      case 'Trios':
-        return numberFormatter.format(playerStats.trio.matches).toString();
-      case 'Squads':
-        return numberFormatter.format(playerStats.squad.matches).toString();
-    }
-    return '0';
-  }
 }

@@ -128,7 +128,7 @@ class All {
   Solo solo;
   Duo duo;
   Trio trio;
-  Trio squad;
+  Squad squad;
   Ltm ltm;
 
   All({this.overall, this.solo, this.duo, this.trio, this.squad, this.ltm});
@@ -139,7 +139,7 @@ class All {
     solo = json['solo'] != null ? new Solo.fromJson(json['solo']) : null;
     duo = json['duo'] != null ? new Duo.fromJson(json['duo']) : null;
     trio = json['trio'] != null ? new Trio.fromJson(json['trio']) : null;
-    squad = json['squad'] != null ? new Trio.fromJson(json['squad']) : null;
+    squad = json['squad'] != null ? new Squad.fromJson(json['squad']) : null;
     ltm = json['ltm'] != null ? new Ltm.fromJson(json['ltm']) : null;
   }
 
@@ -562,7 +562,7 @@ class Ltm {
 
 class Squad {
   int score;
-  int scorePerMin;
+  double scorePerMin;
   double scorePerMatch;
   int wins;
   int top3;

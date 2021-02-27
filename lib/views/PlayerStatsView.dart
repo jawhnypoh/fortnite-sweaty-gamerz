@@ -208,21 +208,71 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
         shrinkWrap: true,
         primary: false,
         children: <Widget>[
-          buildTeamsListItem(
-              title: 'Solo', icon: Icons.person, playerStats: playerAll),
-          buildTeamsListItem(
-              title: 'Duos', icon: Icons.people, playerStats: playerAll),
-          buildTeamsListItem(
-              title: 'Trios', icon: Icons.group_work, playerStats: playerAll),
-          buildTeamsListItem(
-              title: 'Squads', icon: Icons.category, playerStats: playerAll)
+          buildTeamsListItemSolo(
+              title: 'Solo', icon: Icons.person, soloStats: playerAll.solo),
+          buildTeamsListItemDuos(
+              title: 'Duos', icon: Icons.people, duoStats: playerAll.duo),
+          buildTeamsListItemTrios(
+              title: 'Trios',
+              icon: Icons.group_work,
+              trioStats: playerAll.trio),
+          buildTeamsListItemSquads(
+              title: 'Squads',
+              icon: Icons.category,
+              squadStats: playerAll.squad)
         ],
       ),
     );
   }
 
-  Widget buildTeamsListItem(
-      {int idx, String title, IconData icon, All playerStats}) {
+  Widget buildTeamsListItemSolo(
+      {int idx, String title, IconData icon, Solo soloStats}) {
+    return Material(
+      color: Colors.transparent,
+      child: Theme(
+        data: ThemeData(accentColor: Colors.white),
+        child: ExpansionTile(
+          initiallyExpanded: true,
+          leading: Icon(
+            icon,
+            size: 40,
+            color: Colors.white,
+          ),
+          title: Text(title,
+              style: TextStyle(
+                  fontSize: 30, fontFamily: 'Fortnite', color: Colors.white)),
+          subtitle: Text(
+            numberFormatter.format(soloStats.matches).toString() + ' Matches',
+            style: TextStyle(color: Colors.white),
+          ),
+          children: <Widget>[
+            const Padding(padding: EdgeInsets.only(top: 10.0)),
+            buildTeamsDetailIntRows(
+                'Wins', 'Kills', soloStats.wins, soloStats.kills),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows(
+                'Win %', 'K/D', soloStats.winRate, soloStats.kd),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailIntRows(
+                'Top 10', 'Top 25', soloStats.top10, soloStats.top25),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailIntRows('Time Played', 'Score',
+                soloStats.minutesPlayed, soloStats.score),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows('Score/Match', 'Score/Min',
+                soloStats.scorePerMatch, soloStats.scorePerMin),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows('Kills/Match', 'Kills/Min',
+                soloStats.killsPerMatch, soloStats.killsPerMin),
+            const Padding(padding: EdgeInsets.only(top: 10.0)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildTeamsListItemDuos(
+      {int idx, String title, IconData icon, Duo duoStats}) {
     return Material(
       color: Colors.transparent,
       child: Theme(
@@ -237,29 +287,118 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
               style: TextStyle(
                   fontSize: 30, fontFamily: 'Fortnite', color: Colors.white)),
           subtitle: Text(
-            Utilities().determineNumberOfMatches(title, playerStats) +
-                ' Matches',
+            numberFormatter.format(duoStats.matches).toString() + ' Matches',
             style: TextStyle(color: Colors.white),
           ),
           children: <Widget>[
             const Padding(padding: EdgeInsets.only(top: 10.0)),
             buildTeamsDetailIntRows(
-                'Wins', 'Kills', playerStats.solo.wins, playerStats.solo.kills),
+                'Wins', 'Kills', duoStats.wins, duoStats.kills),
             const Padding(padding: EdgeInsets.only(top: 5.0)),
             buildTeamsDetailDoubleRows(
-                'Win %', 'K/D', playerStats.solo.winRate, playerStats.solo.kd),
+                'Win %', 'K/D', duoStats.winRate, duoStats.kd),
             const Padding(padding: EdgeInsets.only(top: 5.0)),
-            buildTeamsDetailIntRows('Top 10', 'Top 25', playerStats.solo.top10,
-                playerStats.solo.top25),
+            buildTeamsDetailIntRows(
+                'Top 5', 'Top 12', duoStats.top5, duoStats.top12),
             const Padding(padding: EdgeInsets.only(top: 5.0)),
-            buildTeamsDetailIntRows('Time Played', 'Score',
-                playerStats.solo.minutesPlayed, playerStats.solo.score),
+            buildTeamsDetailIntRows(
+                'Time Played', 'Score', duoStats.minutesPlayed, duoStats.score),
             const Padding(padding: EdgeInsets.only(top: 5.0)),
             buildTeamsDetailDoubleRows('Score/Match', 'Score/Min',
-                playerStats.solo.scorePerMatch, playerStats.solo.scorePerMin),
+                duoStats.scorePerMatch, duoStats.scorePerMin),
             const Padding(padding: EdgeInsets.only(top: 5.0)),
             buildTeamsDetailDoubleRows('Kills/Match', 'Kills/Min',
-                playerStats.solo.killsPerMatch, playerStats.solo.killsPerMin),
+                duoStats.killsPerMatch, duoStats.killsPerMin),
+            const Padding(padding: EdgeInsets.only(top: 10.0)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildTeamsListItemTrios(
+      {int idx, String title, IconData icon, Trio trioStats}) {
+    return Material(
+      color: Colors.transparent,
+      child: Theme(
+        data: ThemeData(accentColor: Colors.white),
+        child: ExpansionTile(
+          leading: Icon(
+            icon,
+            size: 40,
+            color: Colors.white,
+          ),
+          title: Text(title,
+              style: TextStyle(
+                  fontSize: 30, fontFamily: 'Fortnite', color: Colors.white)),
+          subtitle: Text(
+            numberFormatter.format(trioStats.matches).toString() + ' Matches',
+            style: TextStyle(color: Colors.white),
+          ),
+          children: <Widget>[
+            const Padding(padding: EdgeInsets.only(top: 10.0)),
+            buildTeamsDetailIntRows(
+                'Wins', 'Kills', trioStats.wins, trioStats.kills),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows(
+                'Win %', 'K/D', trioStats.winRate, trioStats.kd),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailIntRows(
+                'Top 3', 'Top 6', trioStats.top3, trioStats.top6),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailIntRows('Time Played', 'Score',
+                trioStats.minutesPlayed, trioStats.score),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows('Score/Match', 'Score/Min',
+                trioStats.scorePerMatch, trioStats.scorePerMin),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows('Kills/Match', 'Kills/Min',
+                trioStats.killsPerMatch, trioStats.killsPerMin),
+            const Padding(padding: EdgeInsets.only(top: 10.0)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildTeamsListItemSquads(
+      {int idx, String title, IconData icon, Squad squadStats}) {
+    return Material(
+      color: Colors.transparent,
+      child: Theme(
+        data: ThemeData(accentColor: Colors.white),
+        child: ExpansionTile(
+          leading: Icon(
+            icon,
+            size: 40,
+            color: Colors.white,
+          ),
+          title: Text(title,
+              style: TextStyle(
+                  fontSize: 30, fontFamily: 'Fortnite', color: Colors.white)),
+          subtitle: Text(
+            numberFormatter.format(squadStats.matches).toString() + ' Matches',
+            style: TextStyle(color: Colors.white),
+          ),
+          children: <Widget>[
+            const Padding(padding: EdgeInsets.only(top: 10.0)),
+            buildTeamsDetailIntRows(
+                'Wins', 'Kills', squadStats.wins, squadStats.kills),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows(
+                'Win %', 'K/D', squadStats.winRate, squadStats.kd),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailIntRows(
+                'Top 3', 'Top 6', squadStats.top3, squadStats.top6),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailIntRows('Time Played', 'Score',
+                squadStats.minutesPlayed, squadStats.score),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows('Score/Match', 'Score/Min',
+                squadStats.scorePerMatch, squadStats.scorePerMin),
+            const Padding(padding: EdgeInsets.only(top: 5.0)),
+            buildTeamsDetailDoubleRows('Kills/Match', 'Kills/Min',
+                squadStats.killsPerMatch, squadStats.killsPerMin),
             const Padding(padding: EdgeInsets.only(top: 10.0)),
           ],
         ),
