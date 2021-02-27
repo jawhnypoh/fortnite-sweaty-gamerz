@@ -3,7 +3,7 @@
 Are you a Fortnite sweat? Do you wish you were? Do you want to see just how sweaty some of the other players are? Well this website is just for you! Visit the [Fortnite Sweaty Gamerz website](https://jawhnypoh.github.io/fortnite_sweaty_gamerz/) today!!
 
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)
-![Flutter](https://img.shields.io/badge/Flutter-1.25.0-8.3.pre-orange?logo=Flutter&logoColor=white)
+![Flutter](![Flutter](https://img.shields.io/badge/Flutter-1.25.0-orange?logo=Flutter&logoColor=white))
 
 ## Meta 
 - **State:** Development 
