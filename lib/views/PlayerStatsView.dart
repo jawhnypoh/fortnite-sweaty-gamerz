@@ -102,6 +102,7 @@ class PlayerStatsViewState extends State<PlayerStatsView> {
     return AppBar(
       centerTitle: true,
       title: TextField(
+        textInputAction: TextInputAction.go,
         controller: query,
         decoration: InputDecoration(
           hintText: 'find a sweat...',
